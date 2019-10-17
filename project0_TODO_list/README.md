@@ -1,3 +1,5 @@
+Completed project demo: https://www.youtube.com/watch?v=bf1qE1i9Yts
+
 # Project 0
 
 The goal of this project is to practice JavaScript and its paradigms by creating
