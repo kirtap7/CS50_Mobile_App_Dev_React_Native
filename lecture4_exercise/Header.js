@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
   header: {
     fontWeight: 'bold',
     color:'darkblue',
+    backgroundColor: 'white',
     marginLeft: 10,
     fontSize: 20,
   },

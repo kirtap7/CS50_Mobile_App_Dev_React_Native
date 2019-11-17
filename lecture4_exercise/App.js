@@ -1,16 +1,10 @@
 import React from 'react';
-import {
-  Button,
-  SectionList,
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-} from 'react-native';
+import {Button,SectionList,StyleSheet,View,Text,TextInput} from 'react-native';
 import Constants from 'expo-constants';
 
 import Row from './Row.js'
 import Header from './Header.js'
+import ModifyElement from './ModifyObject.js'
 
 const renderItem = ({ item }) => (
   <Row value={item} />
@@ -33,28 +27,12 @@ export default class App extends React.Component {
   state = {
     obj: DATA,
     showForm: false,
-    formKey: '',
-    formValue: '',
   };
 
   displayForm = () => {
     this.setState(prevState => ({
       showForm: !prevState.showForm,
-      formKey: '',
-      formValue: '',
     }));
-  };
-
-  setFormKey = key => {
-    this.setState({
-      formKey: key,
-    });
-  };
-
-  setFormValue = value => {
-    this.setState({
-      formValue: value,
-    });
   };
 
   modifyElement = (key, value) => {
@@ -69,6 +47,7 @@ export default class App extends React.Component {
         return { obj: { ...prevState.obj, [key]: value } };
       }
     });
+    this.displayForm();
   };
 
   render() {
@@ -80,28 +59,8 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Button title="Add/Edit element" onPress={() => this.displayForm()} />
-        {this.state.showForm && [
-          <Text style={{ textAlign: 'center' }}> {'Enter a Key'} </Text>,
-          <TextInput
-            style={styles.inputBox}
-            onChangeText={value => this.setFormKey(value)}
-            value={this.state.formKey}
-          />,
-          <Text style={{ textAlign: 'center' }}> {'Enter a Value'} </Text>,
-          <TextInput
-            style={styles.inputBox}
-            onChangeText={value => this.setFormValue(value)}
-            value={this.state.formValue}
-          />,
-          <Button
-            title="Submit"
-            onPress={() => {
-              this.modifyElement(this.state.formKey, this.state.formValue);
-              this.displayForm();
-            }}
-          />,
-        ]}
-        <SectionList
+        {this.state.showForm && <ModifyElement onSubmit={this.modifyElement}/>}
+        <SectionList   
           sections={sections}
           renderItem={renderItem}
           renderSectionHeader={renderSectionHeader}
@@ -117,14 +76,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'stretch',
     paddingTop: Constants.statusBarHeight,
-  },
-  inputBox: {
-    height: 25,
-    width: 200,
-    borderColor: 'grey',
-    borderWidth: 1,
-    alignSelf: 'center',
-    fontSize: 18,
-    textAlign: 'center',
   },
 });
