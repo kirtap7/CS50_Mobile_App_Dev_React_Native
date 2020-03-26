@@ -26,9 +26,3 @@ If you want a challenge, try adding a view to add/modify these key/value pairs.
   - If the key exists and the value was a primitive, the new value should overwrite the old
   - If the key exists and the value was an array, the new value should be added to the beginning of the original array
 
-Hint: Use [`JSON.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse)
-to parse strings into JS values.
-
-## Solution
-See the solution's code [here](../4-lists-solution), or run it without looking at the code
-to play with the functionality.
